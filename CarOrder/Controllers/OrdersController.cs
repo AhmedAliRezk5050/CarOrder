@@ -78,6 +78,7 @@ public class OrdersController : Controller
         return View(model);
     }
 
+    [Authorize(Roles = Roles.Edit)]
     public async Task<IActionResult> Edit(int? id)
     {
         if (!IsValidId(id))
@@ -106,6 +107,7 @@ public class OrdersController : Controller
         });
     }
     
+    [Authorize(Roles = Roles.Edit)]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, EditOrderVM model)

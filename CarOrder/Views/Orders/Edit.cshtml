@@ -5,17 +5,16 @@
 }
 
 <form asp-action="Edit">
-    <div class="" asp-validation-summary="All"></div>
+    <div class="text-danger" asp-validation-summary="All"></div>
     <div class="border p-3 mt-4">
         <div class="mb-2">
             <h2>Edit Order</h2>
-            <hr/>
+            <hr />
         </div>
         <input type="hidden" asp-for="Id">
         <div class="mb-3">
             <label asp-for="Comment" class="form-label"></label>
-            <input asp-for="Comment"
-                   class="form-control">
+            <input asp-for="Comment" class="form-control">
         </div>
 
         <div class="mb-3">
@@ -33,7 +32,7 @@
 
 @section Scripts
 {
-    @{
-        <partial name="_ValidationScriptsPartial"/>
-    }
+@{
+    <partial name="_ValidationScriptsPartial" />
+}
 }
