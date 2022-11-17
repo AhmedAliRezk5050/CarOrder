@@ -1,0 +1,66 @@
+﻿@using CarOrder.Utility
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<Order>?
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="row mb-5">
+    @if (Model != null && !Model.Any())
+    {
+        <div class="text-danger mt-2 mb-2">No orders found</div>
+    }
+
+    <div class="col-6">
+        <a asp-controller="Orders" asp-action="Create" class="btn btn-outline-secondary">
+            <i class="bi bi-plus-circle"></i>&nbsp;<span>Create New Order</span>
+        </a>
+    </div>
+</div>
+
+@if (Model != null && Model.Any())
+{
+    <div class="row">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>Email</th>
+                <th>Car model</th>
+                <th>Car license plate</th>
+                <th>Comment</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var order in Model ?? Enumerable.Empty<Order>())
+            {
+                <tr>
+                    <td>@order.User.UserName</td>
+                    <td>@order.Car.Model</td>
+                    <td>@order.Car.LicensePlate</td>
+                    <td>@order.Comment</td>
+                    <td>
+                        <div class="d-flex justify-content-center gap-2">
+
+                            @if (User.IsInRole(Roles.Edit))
+                            {
+                                <a asp-action="Edit" asp-route-id="@order.Id" class="btn btn-warning d-inline-flex gap-1">
+                                    <i class="bi bi-pencil-square"></i>Edit
+                                </a>
+                            }
+                            @if (User.IsInRole(Roles.Remove))
+                            {
+                                <a asp-action="Delete" asp-route-id="@order.Id" class="btn btn-danger d-inline-flex gap-1">
+                                    <i class="bi bi-trash"></i>Delete
+                                </a>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}

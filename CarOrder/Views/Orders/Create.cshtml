@@ -1,0 +1,32 @@
+﻿@model CreateOrderVM
+
+<form asp-action="Create">
+    <div class="" asp-validation-summary="ModelOnly"></div>
+    <div class="border p-3 mt-4">
+        <div class="mb-2">
+            <h2>Create Order</h2>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Comment" class="form-label"></label>
+            <input asp-for="Comment"
+                   class="form-control">
+        </div>
+        
+        <div class="mb-3">
+            <label asp-for="CarId" class="form-label"></label>
+            <select asp-items="@ViewBag.Cars" asp-for="CarId" class="form-control">
+               <option disabled selected>--Select Car--</option>
+            </select>
+        </div>
+        <button class="btn btn-primary me-3">Create</button>
+        <a asp-action="Index" class="btn btn-outline-primary">Back</a>
+    </div>
+</form>
+
+
+@section Scripts
+{
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}

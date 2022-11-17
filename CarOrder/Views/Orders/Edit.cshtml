@@ -1,0 +1,39 @@
+﻿@model EditOrderVM
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<form asp-action="Edit">
+    <div class="" asp-validation-summary="All"></div>
+    <div class="border p-3 mt-4">
+        <div class="mb-2">
+            <h2>Edit Order</h2>
+            <hr/>
+        </div>
+        <input type="hidden" asp-for="Id">
+        <div class="mb-3">
+            <label asp-for="Comment" class="form-label"></label>
+            <input asp-for="Comment"
+                   class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="CarId" class="form-label"></label>
+            <select asp-items="Model.Cars" asp-for="CarId" class="form-control">
+                <option disabled selected>--Select Car--</option>
+            </select>
+        </div>
+
+        <button class="btn btn-warning me-3">Edit</button>
+        <a asp-action="Index" class="btn btn-outline-primary">Back</a>
+    </div>
+</form>
+
+
+@section Scripts
+{
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}
